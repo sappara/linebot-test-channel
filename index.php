@@ -38,13 +38,20 @@ foreach ($events as $event) {
   }
   // オウム返し
   // $bot->replyText($event->getReplyToken(), $event->getText());
-  replyTextMessage($bot, $event->getReplyToken(), $event->getText());
+  // replyTextMessage($bot, $event->getReplyToken(), $event->getText());
   // 他のfunctionを使うときは,それぞれの記述を書く事
   // テキストを返信
   // $bot->replyText($event->getReplyToken(), 'TextMessage');
   // テキストを返信、その２
   // replyTextMessage($bot, $event->getReplyToken(), 'こんにちは');
   // その他も同様
+
+  // LINEログイン用ページへのリンクを返信
+  replyMultiMessage($bot, $event->getReplyToken(),
+    new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("以後の処理はホームページで可能です。以下のURLにアクセスしてください。"),
+    new \LINE\LINEBot\MessageBuilder\TextMessageBuilder("https://" . $_SERVER["HTTP_HOST"] .  "/line_login.php")
+    );
+    
 }
 
 // テキストを返信。引数はLINEBot、返信先、テキスト
